@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myboard.board.mapper.ReplyMapper">
+
+	<select id="selectReplyList" parameterType="hashmap" resultType="ReplyDTO">
+		select * from (select rownum rn, rn_reply.* from (select * from reply where board_idx = #{boardIdx} order by idx desc) rn_reply) 
+		where rn between #{start} and #{end}
+	</select>
+	
+	<insert id="insertReply" parameterType="ReplyDTO">
+		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
+			select reply_idx_seq.nextval from dual
+		</selectKey>
+		insert into reply(idx, board_idx, member_id, content, reg_date, status)
+		values(#{idx}, #{boardIdx}, #{memberId}, #{content}, sysdate, 1)
+	</insert>
+	
+	<update id="updateReply" parameterType="ReplyDTO">
+		update reply set content = #{content} where idx = #{idx}
+	</update>
+	
+	<update id="deleteReply" parameterType="int">
+		update reply set status = 0 where idx = #{idx}
+	</update>
+	
+ 	<select id="selectReplyCountBoardIdx" parameterType="int" resultType="int">
+		select count(*) from reply where board_idx = #{boardIdx}
+	</select>
+		
+</mapper>

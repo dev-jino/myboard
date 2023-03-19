@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#footerBody {
+	height: 50px;
+}
+
+#footerBodyContent {
+	text-align: center;
+	width: 100%;
+	padding: 13px;
+}

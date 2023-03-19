@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.container {
+	width: 1120px;
+	max-width: none !important;
+}
+
+.main-container {
+	height: 960px;
+}
+
+.col-xs-12 {
+	width: 100%;
+}
+
+.board-list-header {
+	text-align: right; width:100%;
+}
+
+.table td, .table th {
+    padding: 0.5rem;
+}
+
+.free-board-no {
+	width: 50px;
+}
+
+.free-board-title {
+	width: 300px;
+}
+
+.free-board-writer {
+	width: 70px;
+}
+
+.free-board-date {
+	width: 80px;
+}
+
+.free-board-view {
+	width: 50px;
+}
+
+.free-board-like {
+	width: 50px;
+}
+
+.free-board-remove-td {
+	height: 65px;
+}
+
+.page-link {
+	color: #000; 
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #555;
+	font-weight:bold;
+	background-color: #f1f1f1;
+	border-color: #ccc;
+}
+
+.page-link:focus, .page-link:hover {
+	color: #fff;
+	background-color: #6c757d; 
+	border-color: #ccc;
+}
+
+.find-form {
+	float: none;
+	margin:0 auto;
+}
+
+.paging-div {
+	text-align: center;
+}
+
+.advertisement {
+	height:300px;
+	line-height:300px;
+	font-size:24px;
+}

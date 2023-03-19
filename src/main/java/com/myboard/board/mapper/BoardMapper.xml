@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myboard.board.mapper.BoardMapper">
+	
+	<select id="selectBoardListPagination" parameterType="map" resultType="BoardDTO">
+		select idx, member_id, title, content, hit, reg_date, status, (select count(*) from reply where reply.board_idx = final_rn_board.idx) as reply
+		 from (select rownum rn, rn_board.* from (select * from board 
+		<where>
+			<choose>
+				<when test="searchType == 'title'">
+					title like '%'||#{searchName}||'%'
+				</when>
+				<when test="searchType == 'writer'">
+					member_id like '%'||#{searchName}||'%'
+				</when>
+				<when test="searchType == 'titleContent'">
+					title like '%'||#{searchName}||'%' or content like '%'||#{searchName}||'%'
+				</when>
+			</choose>
+		</where>
+		order by idx desc) rn_board) final_rn_board
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<insert id="insertBoard" parameterType="BoardDTO">
+		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
+			select board_idx_seq.nextval from dual
+		</selectKey>
+		insert into board(idx, member_id, title, content, hit, reg_date, status) 
+		values(#{idx}, #{memberId}, #{title}, #{content}, 0, sysdate, 1)
+	</insert>
+	
+	<select id="selectBoardIdx" resultType="BoardDTO" parameterType="int">
+		select idx, member_id, title, content, hit, reg_date, status, (select count(*) from recommend where board_idx = #{idx}) as recommend 
+		from board where idx = #{idx}
+	</select>
+	
+	<update id="updateBoard" parameterType="BoardDTO">
+		update board set title = #{title}, content = #{content} where idx = #{idx}
+	</update>
+	
+	<update id="deleteBoard" parameterType="int">
+		update board set status = 0 where idx = #{idx}
+	</update>
+	
+	<select id="selectBoardCount" parameterType="map" resultType="int">
+		select count(*) from board
+		<where>
+			<choose>
+				<when test="searchType == 'title'">
+					title like '%'||#{searchName}||'%'
+				</when>
+				<when test="searchType == 'writer'">
+					member_id like '%'||#{searchName}||'%'
+				</when>
+				<when test="searchType == 'titleContent'">
+					title like '%'||#{searchName}||'%' or content like '%'||#{searchName}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<update id="updateBoardHit" parameterType="int">
+		update board set hit = hit + 1 where idx = #{idx}
+	</update>
+
+</mapper>

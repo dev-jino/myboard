@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.nav a{
+     color: #000000;
+     text-decoration:none;
+}
+
+.nav a:hover {
+    color: #6c757d;
+    text-decoration: underline;
+}

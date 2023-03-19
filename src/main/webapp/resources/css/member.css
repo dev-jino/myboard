@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.member-table {
+	width: 471px;
+}
+
+.member-login-table {
+	width: 336px;
+}
+
+.login-button-collection {
+	text-align: center;
+	width:100%;
+	margin-top: 15px;
+}
+
+.member-row {
+	display: flex;
+	justify-content: center;
+}
+
+.find-id-msg {
+	text-align: center;
+	width: 471px;
+	border: 1px solid #dee2e6;
+}
+
+.member-button {
+	width: 111px;
+}
+
+#find-id-result {
+	color: red;
+}
+
+.login-error-msg {
+	font-size: 15px;
+    color: red;
+}
+.join-fail-message {
+	font-size: 12px;
+	color: red;
+	text-align: left;
+}
+
+.join-success-message {
+	font-size: 12px;
+	color: blue;
+	text-align: left;
+}
+
+#email {
+	display: inline-block;
+	width: 219px;
+	vertical-align: middle;
+}
+
+#email_auth_input {
+	display: inline-block;
+	width: 219px;
+	vertical-align: middle;
+}

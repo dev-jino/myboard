@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.total-member {
+	text-align: right;
+	width:100%;
+}
+
+.admin-member-status-td {
+	width: 130px;
+}
+
